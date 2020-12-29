@@ -1,0 +1,20 @@
+#
+#
+#
+#
+#
+#
+#
+
+worldName: 'skyblockworld'
+
+permissions:
+  island:
+    #Without permission his island will be 150x150b
+
+    #When user, with this perms, creates his island, his island will be 250x250b
+    dimension250: 'skyblock.island.dimension.250'
+    #When user, with this perms, creates his island, his island will be 300x300b
+    dimension300: 'skyblock.island.dimension.300'
+    #When user, with this perms, creates his island, his island will be 400x400b
+    dimension400: 'skyblock.island.dimension.400'

@@ -1,0 +1,8 @@
+name: GalaxyLandSkyblock
+version: ${project.version}
+main: me.darkcode.galaxylandskyblock.Core
+api-version: 1.16
+prefix: GLSkyBlock
+depend: [ LuckPerms ]
+authors: [ 96DarkCode96 ]
+description: SkyBlock for server GalaxyLand
