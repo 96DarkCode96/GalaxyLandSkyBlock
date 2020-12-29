@@ -1,5 +1,6 @@
 package me.darkcode.galaxylandskyblock;
 
+import com.sk89q.worldedit.WorldEdit;
 import me.darkcode.galaxylandskyblock.events.EListener;
 import me.darkcode.galaxylandskyblock.managers.IslandManager;
 import me.darkcode.galaxylandskyblock.managers.UserManager;
@@ -24,6 +25,7 @@ public final class Core extends JavaPlugin {
     private static UserManager userManager;
     private static IslandManager islandManager;
     private static InputStream updatesIS;
+    private static WorldEdit worldEdit;
 
     @Override
     public void onEnable() {
@@ -33,6 +35,10 @@ public final class Core extends JavaPlugin {
         instance = this;
         userManager = new UserManager();
         islandManager = new IslandManager();
+        worldEdit = WorldEdit.getInstance();
+        if(Bukkit.getServer().getPluginManager().getPlugin("WorldEdit") == null){
+            log.error("This plugin needs WorldEdit to be installed on your server!");
+        }
         log.info("Instances loaded!");
         log.info("Registering events...");
         Bukkit.getPluginManager().registerEvents(new EListener(), this);
@@ -48,6 +54,15 @@ public final class Core extends JavaPlugin {
             try {
                 Files.copy(in, cf.toPath());
                 log.info("Config created!");
+            } catch (IOException ignored) {
+            }
+        }
+        in = this.getResource("island.schem");
+        File schematic = new File("plugins/GalaxyLandSkyblock/island.schem");
+        if (!cf.exists()) {
+            try {
+                Files.copy(in, schematic.toPath());
+                log.info("Schematic copied!");
             } catch (IOException ignored) {
             }
         }
@@ -74,6 +89,10 @@ public final class Core extends JavaPlugin {
         }
         Bukkit.setWhitelist(true);
         Bukkit.getWhitelistedPlayers().clear();
+    }
+
+    public static WorldEdit getWorldEdit() {
+        return worldEdit;
     }
 
     public static InputStream getUpdatesIS() {
