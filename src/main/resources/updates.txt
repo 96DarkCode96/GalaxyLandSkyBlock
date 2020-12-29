@@ -1,0 +1,8 @@
+------------------------------------
+|       SkyBlock Update v1.0       |
+|                                  |
+|- 50 Achievements                 |
+|- Item Spawner                    |
+|- Cobble Generator                |
+|                                  |
+------------------------------------

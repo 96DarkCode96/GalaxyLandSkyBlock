@@ -7,9 +7,15 @@ import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.group.Group;
 import net.luckperms.api.node.Node;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class User {
@@ -28,10 +34,22 @@ public class User {
         island = Core.getIslandManager().getIsland(uuid);
         player.teleport(island.getSpawnLocation());
         if(b){
-            //TODO Give items!
+            player.getInventory().setItem(8, new Item().setMaterial(Material.NETHER_STAR).setAmount(1).setDisplayName("§c§lMenu").setItemFlags(ItemFlag.values()).setLore(Arrays.asList("", "§2Right click to", "§2join to SkyBlock Hub!", "")).build());
+            for(int i = 0; i < 100; i++){
+                player.sendMessage("");
+            }
             //TODO Start guide!
         }else{
-            //TODO Send updates!
+            for(int i = 0; i < 100; i++){
+                player.sendMessage("");
+            }
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Core.getUpdatesIS()));
+            String line = null;
+            try{
+                while((line = bufferedReader.readLine()) != null){
+                    player.sendMessage(line.replaceAll("&", "§"));
+                }
+            }catch(Exception ignored){}
         }
     }
 

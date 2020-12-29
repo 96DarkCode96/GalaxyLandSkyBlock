@@ -7,6 +7,7 @@ import me.darkcode.galaxylandskyblock.objects.User;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +32,11 @@ public class IslandManager {
     public boolean loadIsland(User user) {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(new File("plugins/GalaxyLandSkyblock/data.yml"));
         if(!config.getBoolean(user.getUuid() + ".hasIsland")){
+            Player p = Bukkit.getPlayer(user.getUuid());
+            for(int i = 0; i < 100; i++){
+                p.sendMessage("");
+            }
+            p.sendMessage("§2Creating island...");
             IslandDimension isDimension = getDimension(user);
             long id = generateId();
             Location middle = new Location(Bukkit.getWorld(Objects.requireNonNull(YamlConfiguration.loadConfiguration(new File("plugins/GalaxyLandSkyblock/config.yml")).getString("worldName"))),

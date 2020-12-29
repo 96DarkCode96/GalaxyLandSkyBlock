@@ -23,6 +23,7 @@ public final class Core extends JavaPlugin {
     private static Log log;
     private static UserManager userManager;
     private static IslandManager islandManager;
+    private static InputStream updatesIS;
 
     @Override
     public void onEnable() {
@@ -41,6 +42,7 @@ public final class Core extends JavaPlugin {
             log.info("Plugin dir created!");
         }
         InputStream in = this.getResource("config.yml");
+        updatesIS = this.getResource("updates.txt");
         File cf = new File("plugins/GalaxyLandSkyblock/config.yml");
         if (!cf.exists()) {
             try {
@@ -72,6 +74,10 @@ public final class Core extends JavaPlugin {
         }
         Bukkit.setWhitelist(true);
         Bukkit.getWhitelistedPlayers().clear();
+    }
+
+    public static InputStream getUpdatesIS() {
+        return updatesIS;
     }
 
     public static Log getLog() {
